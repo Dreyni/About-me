@@ -1,4 +1,3 @@
-import React from 'react';
 import { Brain, Code2, Database, Wrench, Settings } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -8,42 +7,52 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
  * Design: Grid layout with icons and organized skill groups
  */
 const Skills = () => {
-  const [sectionRef, isVisible] = useScrollAnimation();
+  const [sectionRef] = useScrollAnimation();
 
   const skillCategories = [
     {
       title: 'AI & Analytics',
       icon: Brain,
-      color: 'text-purple-400',
-      borderColor: 'border-purple-400/30',
+      colorClass: 'text-purple-400',
+      borderClass: 'border-purple-400/30',
+      shadowClass: 'hover:shadow-purple-400/20',
+      dotClass: 'bg-purple-400',
       skills: ['AI Prompt Engineering', 'Data Analysis Fundamentals', 'Data Visualization Concepts']
     },
     {
       title: 'Frontend',
       icon: Code2,
-      color: 'text-blue-400',
-      borderColor: 'border-blue-400/30',
+      colorClass: 'text-blue-400',
+      borderClass: 'border-blue-400/30',
+      shadowClass: 'hover:shadow-blue-400/20',
+      dotClass: 'bg-blue-400',
       skills: ['HTML', 'CSS', 'Tailwind CSS', 'JavaScript']
     },
     {
       title: 'Backend',
       icon: Database,
-      color: 'text-green-400',
-      borderColor: 'border-green-400/30',
+      colorClass: 'text-green-400',
+      borderClass: 'border-green-400/30',
+      shadowClass: 'hover:shadow-green-400/20',
+      dotClass: 'bg-green-400',
       skills: ['PHP', 'Node.js (Basic)', 'MySQL']
     },
     {
       title: 'Tools',
       icon: Wrench,
-      color: 'text-orange-400',
-      borderColor: 'border-orange-400/30',
+      colorClass: 'text-orange-400',
+      borderClass: 'border-orange-400/30',
+      shadowClass: 'hover:shadow-orange-400/20',
+      dotClass: 'bg-orange-400',
       skills: ['Git', 'GitHub', 'VS Code', 'XAMPP', 'Postman']
     },
     {
       title: 'IT Support & Technical Operations',
       icon: Settings,
-      color: 'text-cyan-400',
-      borderColor: 'border-cyan-400/30',
+      colorClass: 'text-cyan-400',
+      borderClass: 'border-cyan-400/30',
+      shadowClass: 'hover:shadow-cyan-400/20',
+      dotClass: 'bg-cyan-400',
       skills: ['IT Support (basic troubleshooting, user assistance, system setup)', 'Hardware Maintenance (PC assembly, diagnostics, peripheral setup, basic repairs)']
     }
   ];
@@ -69,11 +78,11 @@ const Skills = () => {
             return (
               <div
                 key={index}
-                className={`bg-gray-50 dark:bg-dark-card border ${category.borderColor} rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl hover:shadow-${category.color}/20 scroll-animate-delay-${(index % 6) + 1}`}
+                className={`bg-gray-50 dark:bg-dark-card border ${category.borderClass} rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl ${category.shadowClass} scroll-animate-delay-${(index % 6) + 1}`}
               >
                 {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className={`${category.color} bg-white dark:bg-dark-bg p-2 rounded-lg`}>
+                  <div className={`${category.colorClass} bg-white dark:bg-dark-bg p-2 rounded-lg`}>
                     <IconComponent size={24} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
@@ -86,7 +95,7 @@ const Skills = () => {
                       key={skillIndex}
                       className="text-gray-600 dark:text-gray-400 text-sm flex items-center gap-2 hover:text-gray-900 dark:hover:text-white transition-colors"
                     >
-                      <span className={`w-1.5 h-1.5 rounded-full ${category.color.replace('text', 'bg')}`}></span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${category.dotClass}`}></span>
                       {skill}
                     </li>
                   ))}

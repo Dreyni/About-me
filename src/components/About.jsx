@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { GraduationCap, Sparkles, Code } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -8,7 +8,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
  * Design: Clean card layout with subtle accents
  */
 const About = () => {
-  const [sectionRef, isVisible] = useScrollAnimation();
+  const [sectionRef] = useScrollAnimation();
   const profileRef = useRef(null);
   const [transform, setTransform] = useState('');
 
@@ -104,15 +104,15 @@ const About = () => {
             </p>
             
             <p className="text-lg">
-              Through various projects, I've gained hands-on experience in <span className="text-accent-primary font-semibold">system development</span>, 
+              Through various projects, I&apos;ve gained hands-on experience in <span className="text-accent-primary font-semibold">system development</span>, 
               building solutions that address real-world business needs. From hospital information systems to payroll automation, 
               I focus on creating efficient, data-driven applications that improve operational workflows.
             </p>
             
             <p className="text-lg">
-              I'm particularly interested in leveraging <span className="text-accent-secondary font-semibold">AI-assisted problem solving</span> and 
+              I&apos;m particularly interested in leveraging <span className="text-accent-secondary font-semibold">AI-assisted problem solving</span> and 
               modern development practices to create intelligent systems. Currently working on my capstone thesis project—a data-driven 
-              fitness platform—I'm eager to apply these skills in a professional internship environment where I can contribute meaningfully 
+              fitness platform—I&apos;m eager to apply these skills in a professional internship environment where I can contribute meaningfully 
               while continuing to learn and grow.
             </p>
           </div>

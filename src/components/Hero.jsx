@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 
 /**
@@ -11,10 +11,16 @@ const Hero = () => {
   useEffect(() => {
     const stages = [1, 2, 3, 4];
     const delays = [100, 300, 500, 700];
-    
+    const timeouts = [];
+
     stages.forEach((stage, index) => {
-      setTimeout(() => setAnimationStage(stage), delays[index]);
+      const timeoutId = setTimeout(() => setAnimationStage(stage), delays[index]);
+      timeouts.push(timeoutId);
     });
+
+    return () => {
+      timeouts.forEach((timeoutId) => clearTimeout(timeoutId));
+    };
   }, []);
 
   const scrollToSection = (id) => {

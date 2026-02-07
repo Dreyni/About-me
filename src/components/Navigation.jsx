@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../contexts/ThemeContext';
 
@@ -21,11 +21,11 @@ const Navigation = () => {
 
   const scrollToSection = (href) => {
     const id = href.replace('#', '');
-    const element = id === 'home' ? window : document.getElementById(id);
     
     if (id === 'home') {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
+      const element = document.getElementById(id);
       element?.scrollIntoView({ behavior: 'smooth' });
     }
     

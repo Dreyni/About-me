@@ -1,4 +1,3 @@
-import React from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';

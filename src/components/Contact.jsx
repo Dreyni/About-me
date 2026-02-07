@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Mail, Github, Linkedin, Phone, MapPin, X } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -9,10 +9,10 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
  */
 const Contact = () => {
   const [showMap, setShowMap] = useState(false);
-  const [sectionRef, isVisible] = useScrollAnimation();
+  const [sectionRef] = useScrollAnimation();
 
   // Close modal on Escape key
-  React.useEffect(() => {
+  useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && showMap) {
         setShowMap(false);
@@ -76,7 +76,7 @@ const Contact = () => {
             Contacts <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent"></span>
           </h2>
           <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Open to internship opportunities and professional connections. Let's discuss how I can contribute to your team.
+            Open to internship opportunities and professional connections. Let&apos;s discuss how I can contribute to your team.
           </p>
           <div className="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mt-4"></div>
         </div>
@@ -104,7 +104,7 @@ const Contact = () => {
                 }
               };
 
-              const handleKeyPress = (e) => {
+              const handleKeyDown = (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   handleClick();
@@ -118,7 +118,7 @@ const Contact = () => {
                   tabIndex={0}
                   className="text-center p-6 bg-gray-50 dark:bg-dark-card rounded-lg border border-gray-200 dark:border-dark-border hover:border-accent-primary transition-all duration-300 hover:scale-105 cursor-pointer"
                   onClick={handleClick}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyDown}
                   aria-label={`${item.label}: ${item.value}`}
                 >
                   {content}
@@ -199,7 +199,7 @@ const Contact = () => {
         <div className="mt-12 text-center bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 border border-accent-primary/20 rounded-xl p-8">
           <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Ready to Collaborate?</h3>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            I'm actively seeking internship opportunities where I can apply my skills and grow professionally.
+            I&apos;m actively seeking internship opportunities where I can apply my skills and grow professionally.
           </p>
           <a
             href="mailto:delosreyesdrei25@gmail.com"

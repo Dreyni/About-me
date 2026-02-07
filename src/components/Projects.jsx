@@ -1,4 +1,3 @@
-import React from 'react';
 import { ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
@@ -8,7 +7,7 @@ import { useScrollAnimation } from '../hooks/useScrollAnimation';
  * Design: Card-based layout with hover effects and grouped tech tags
  */
 const Projects = () => {
-  const [sectionRef, isVisible] = useScrollAnimation();
+  const [sectionRef] = useScrollAnimation();
 
   const projects = [
     {
