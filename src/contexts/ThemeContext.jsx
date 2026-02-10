@@ -1,19 +1,9 @@
-/* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
-const ThemeContext = createContext();
-
-export const useTheme = () => {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider');
-  }
-  return context;
-};
+const ThemeContext = createContext(null);
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
-    // Check localStorage first, then system preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) return savedTheme;
     
@@ -21,7 +11,6 @@ export const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // Apply theme to document root and body
     const root = document.documentElement;
     const body = document.body;
     
@@ -33,7 +22,6 @@ export const ThemeProvider = ({ children }) => {
       body.classList.remove('dark');
     }
     
-    // Save to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 
@@ -47,3 +35,5 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+export default ThemeContext;

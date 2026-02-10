@@ -1,11 +1,6 @@
 import { Brain, Code2, Database, Wrench, Settings } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/**
- * Skills Section Component
- * Displays technical skills grouped by category
- * Design: Grid layout with icons and organized skill groups
- */
 const Skills = () => {
   const [sectionRef] = useScrollAnimation();
 
@@ -60,7 +55,6 @@ const Skills = () => {
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-bg transition-colors duration-300">
       <div ref={sectionRef} className="max-w-6xl mx-auto scroll-animate">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             Technical <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Skills</span>
@@ -71,7 +65,6 @@ const Skills = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mt-4"></div>
         </div>
 
-        {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
@@ -80,7 +73,6 @@ const Skills = () => {
                 key={index}
                 className={`bg-gray-50 dark:bg-dark-card border ${category.borderClass} rounded-xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl ${category.shadowClass} scroll-animate-delay-${(index % 6) + 1}`}
               >
-                {/* Category Header */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className={`${category.colorClass} bg-white dark:bg-dark-bg p-2 rounded-lg`}>
                     <IconComponent size={24} />
@@ -88,7 +80,6 @@ const Skills = () => {
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white">{category.title}</h3>
                 </div>
 
-                {/* Skills List */}
                 <ul className="space-y-2">
                   {category.skills.map((skill, skillIndex) => (
                     <li
@@ -105,7 +96,6 @@ const Skills = () => {
           })}
         </div>
 
-        {/* Additional Context */}
         <div className="mt-12 bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl p-8 text-center">
           <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
             Continuously expanding my technical expertise through hands-on projects and modern development practices. 

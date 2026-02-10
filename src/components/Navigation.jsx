@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../contexts/ThemeContext';
+import { useTheme } from '../contexts/useTheme';
 
-/**
- * Navigation Component
- * Sticky header with smooth scrolling navigation
- * Design: Minimal, glassmorphism effect, mobile responsive
- */
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
@@ -36,7 +31,6 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-dark-bg/90 backdrop-blur-md border-b border-gray-200 dark:border-dark-border transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo with Profile Picture */}
           <a
             href="#home"
             onClick={(e) => {
@@ -55,7 +49,6 @@ const Navigation = () => {
             </span>
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -71,7 +64,6 @@ const Navigation = () => {
               </a>
             ))}
             
-            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-100 dark:bg-dark-card border border-gray-300 dark:border-dark-border text-accent-primary hover:scale-110 transition-all"
@@ -81,7 +73,6 @@ const Navigation = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button & Theme Toggle */}
           <div className="md:hidden flex items-center gap-3">
             <button
               onClick={toggleTheme}
@@ -101,7 +92,6 @@ const Navigation = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       {isOpen && (
         <div className="md:hidden bg-white dark:bg-dark-card border-t border-gray-200 dark:border-dark-border transition-colors duration-300">
           <div className="px-4 py-4 space-y-3">

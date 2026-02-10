@@ -1,11 +1,6 @@
 import { ExternalLink } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/**
- * Projects Section Component
- * Showcases key development projects with descriptions and tech stacks
- * Design: Card-based layout with hover effects and grouped tech tags
- */
 const Projects = () => {
   const [sectionRef] = useScrollAnimation();
 
@@ -37,7 +32,6 @@ const Projects = () => {
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark-card transition-colors duration-300">
       <div ref={sectionRef} className="max-w-6xl mx-auto scroll-animate">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             Featured <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Projects</span>
@@ -48,7 +42,6 @@ const Projects = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mt-4"></div>
         </div>
 
-        {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div
@@ -57,7 +50,6 @@ const Projects = () => {
                 project.featured ? 'md:col-span-2 lg:col-span-3' : ''
               }`}
             >
-              {/* Category Badge */}
               <div className="flex items-center justify-between mb-4">
                 <span className={`text-xs font-semibold px-3 py-1 rounded-full bg-gradient-to-r ${project.gradient} text-white`}>
                   {project.category}
@@ -69,17 +61,14 @@ const Projects = () => {
                 )}
               </div>
 
-              {/* Project Title */}
               <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-accent-primary transition-colors">
                 {project.title}
               </h3>
 
-              {/* Project Description */}
               <p className="text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
                 {project.description}
               </p>
 
-              {/* Tech Stack Tags */}
               <div className="flex flex-wrap gap-2 mt-auto">
                 {project.techStack.map((tech, techIndex) => (
                   <span
@@ -91,7 +80,6 @@ const Projects = () => {
                 ))}
               </div>
 
-              {/* Hover Indicator */}
               <div className="mt-6 flex items-center text-sm text-gray-500 dark:text-gray-500 group-hover:text-accent-primary transition-colors">
                 <span>View details</span>
                 <ExternalLink size={14} className="ml-2 group-hover:translate-x-1 transition-transform" />
@@ -100,7 +88,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* Bottom Note */}
         <div className="mt-12 text-center">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
             All projects focused on <span className="text-accent-primary">data accuracy</span>, 

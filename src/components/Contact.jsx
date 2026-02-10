@@ -2,16 +2,10 @@ import { useEffect, useState } from 'react';
 import { Mail, Github, Linkedin, Phone, MapPin, X } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/**
- * Contact Section Component
- * Professional contact information with social links
- * Design: Clean, minimal layout with hover effects
- */
 const Contact = () => {
   const [showMap, setShowMap] = useState(false);
   const [sectionRef] = useScrollAnimation();
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && showMap) {
@@ -70,7 +64,6 @@ const Contact = () => {
   return (
     <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-dark-card transition-colors duration-300">
       <div ref={sectionRef} className="max-w-4xl mx-auto scroll-animate">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             Contacts <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent"></span>
@@ -81,7 +74,6 @@ const Contact = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full mt-4"></div>
         </div>
 
-        {/* Contact Information */}
         <div className="bg-white dark:bg-dark-bg border border-gray-200 dark:border-dark-border rounded-xl p-8 mb-8 transition-colors duration-300">
           <div className="grid md:grid-cols-3 gap-6">
             {contactInfo.map((item) => {
@@ -128,7 +120,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Map Modal Popup */}
         {showMap && (
           <div 
             className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
@@ -141,7 +132,6 @@ const Contact = () => {
               className="bg-dark-card border border-accent-primary rounded-xl overflow-hidden max-w-4xl w-full relative"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={() => setShowMap(false)}
                 className="absolute top-4 right-4 z-10 bg-dark-bg border border-accent-primary text-accent-primary p-2 rounded-lg hover:bg-accent-primary hover:text-white transition-all"
@@ -150,7 +140,6 @@ const Contact = () => {
                 <X size={24} />
               </button>
               
-              {/* Map Header */}
               <div className="bg-dark-bg border-b border-dark-border p-4">
                 <h3 id="map-modal-title" className="text-xl font-bold text-white flex items-center gap-2">
                   <MapPin className="text-accent-primary" aria-hidden="true" />
@@ -158,7 +147,6 @@ const Contact = () => {
                 </h3>
               </div>
               
-              {/* Embedded Map */}
               <iframe
                 src="https://www.google.com/maps?q=13.951028,120.624028&z=15&output=embed"
                 width="100%"
@@ -173,7 +161,6 @@ const Contact = () => {
           </div>
         )}
 
-        {/* Social Links */}
         <div className="text-center mb-8">
           <p className="text-gray-600 dark:text-gray-400 mb-6">Connect with me on:</p>
           <div className="flex justify-center gap-4">
@@ -195,7 +182,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
         <div className="mt-12 text-center bg-gradient-to-r from-accent-primary/10 to-accent-secondary/10 border border-accent-primary/20 rounded-xl p-8">
           <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">Ready to Collaborate?</h3>
           <p className="text-gray-700 dark:text-gray-300 mb-6">

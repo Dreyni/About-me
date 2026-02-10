@@ -1,10 +1,5 @@
 import { Heart } from 'lucide-react';
 
-/**
- * Footer Component
- * Simple footer with copyright and attribution
- * Design: Minimal, centered, subtle
- */
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 

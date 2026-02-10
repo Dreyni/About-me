@@ -2,11 +2,6 @@ import { useRef, useState } from 'react';
 import { GraduationCap, Sparkles, Code } from 'lucide-react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-/**
- * About Me Section Component
- * Professional summary highlighting education, experience, and interests
- * Design: Clean card layout with subtle accents
- */
 const About = () => {
   const [sectionRef] = useScrollAnimation();
   const profileRef = useRef(null);
@@ -32,7 +27,6 @@ const About = () => {
   return (
     <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-dark-bg transition-colors duration-300">
       <div ref={sectionRef} className="max-w-5xl mx-auto scroll-animate">
-        {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">
             About <span className="bg-gradient-to-r from-accent-primary to-accent-secondary bg-clip-text text-transparent">Me</span>
@@ -40,9 +34,7 @@ const About = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-accent-primary to-accent-secondary mx-auto rounded-full"></div>
         </div>
 
-        {/* Content Card */}
         <div className="bg-gray-50 dark:bg-dark-card border border-gray-200 dark:border-dark-border rounded-xl p-8 sm:p-10 shadow-xl transition-colors duration-300">
-          {/* Profile Photo */}
           <div className="flex justify-center mb-8">
             <div 
               ref={profileRef}
@@ -95,7 +87,6 @@ const About = () => {
             </div>
           </div>
 
-          {/* Professional Summary */}
           <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             <p className="text-lg">
               I am a <span className="text-accent-primary font-semibold">Bachelor of Science in Information Technology</span> student 
@@ -117,7 +108,6 @@ const About = () => {
             </p>
           </div>
 
-          {/* Location Badge */}
           <div className="mt-8 pt-6 border-t border-gray-200 dark:border-dark-border">
             <p className="text-center text-gray-600 dark:text-gray-400">
               📍 <span className="text-gray-900 dark:text-gray-300">Lian, Batangas, Philippines</span>
