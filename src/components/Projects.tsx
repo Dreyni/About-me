@@ -1,5 +1,7 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { ScrollReveal } from './ScrollReveal';
 import styles from './Projects.module.css';
 
 interface Project {
@@ -38,46 +40,60 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const Projects = () => {
-  const [ref] = useScrollAnimation<HTMLDivElement>();
+const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, -40]);
 
   return (
-    <section id="projects" className="section section-alt">
-      <div className="wrap">
-        <div ref={ref} className="scroll-animate">
-          <div className="sh anim-child d1">
-            <h2 className="sh-title">
-              Featured <span className="sh-accent">Projects</span>
-            </h2>
-            <div className="sh-line" />
-            <p className="sh-sub">
-              Real-world systems built from concept to deployment — backend, frontend, and
-              everything in between.
-            </p>
-          </div>
+    <ScrollReveal delay={index * 0.1}>
+      <motion.div ref={cardRef} className={styles.card} style={{ y }}>
+        <div className={styles.bar} style={{ background: project.bar }} />
+        <div className={styles.cardHead}>
+          <span className={styles.cat} style={project.catStyle}>
+            {project.category}
+          </span>
+        </div>
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.desc}>{project.desc}</p>
+        <div className={styles.tech}>
+          {project.tech.map((t) => (
+            <span key={t} className={styles.chip}>
+              {t}
+            </span>
+          ))}
+        </div>
+        <button className={styles.viewBtn}>
+          View Project <ExternalLink size={13} />
+        </button>
+      </motion.div>
+    </ScrollReveal>
+  );
+};
 
-          <div className={`${styles.grid} anim-child d2`}>
-            {PROJECTS.map((p) => (
-              <div key={p.title} className={styles.card}>
-                <div className={styles.bar} style={{ background: p.bar }} />
-                <div className={styles.cardHead}>
-                  <span className={styles.cat} style={p.catStyle}>
-                    {p.category}
-                  </span>
-                </div>
-                <h3 className={styles.title}>{p.title}</h3>
-                <p className={styles.desc}>{p.desc}</p>
-                <div className={styles.tech}>
-                  {p.tech.map((t) => (
-                    <span key={t} className={styles.chip}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <button className={styles.viewBtn}>
-                  View Project <ExternalLink size={13} />
-                </button>
-              </div>
+const Projects = () => {
+  return (
+    <section id="projects" className="section section-light">
+      <div className="wrap">
+        <div>
+          <ScrollReveal>
+            <div className="sh">
+              <h2 className="sh-title">
+                Featured <span className="serif-italic">Work</span>
+              </h2>
+              <p className="sh-sub">
+                Engineering solutions for complex problems — from <span className="serif-italic">architecture</span> to <span className="serif-italic">interface</span>.
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className={styles.grid}>
+            {PROJECTS.map((p, i) => (
+              <ProjectCard key={p.title} project={p} index={i} />
             ))}
           </div>
         </div>

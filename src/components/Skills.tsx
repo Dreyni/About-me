@@ -1,6 +1,6 @@
 import { Brain, Code2, Database, Wrench, Cpu, Users } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { ScrollReveal } from './ScrollReveal';
 import styles from './Skills.module.css';
 
 interface SkillCat {
@@ -70,46 +70,45 @@ const CATS: SkillCat[] = [
 ];
 
 const Skills = () => {
-  const [ref] = useScrollAnimation<HTMLDivElement>();
-
   return (
-    <section id="skills" className="section">
+    <section id="skills" className="section section-light">
       <div className="wrap">
-        <div ref={ref} className="scroll-animate">
-          <div className="sh anim-child d1">
-            <h2 className="sh-title">
-              Technical <span className="sh-accent">Skills</span>
-            </h2>
-            <div className="sh-line" />
-            <p className="sh-sub">
-              A practical toolkit for building full-stack applications and shipping real software.
-            </p>
-          </div>
+        <div>
+          <ScrollReveal>
+            <div className="sh">
+              <h2 className="sh-title">
+                Technical <span className="serif-italic">Expertise</span>
+              </h2>
+              <p className="sh-sub">
+                A practical toolkit for building full-stack applications and shipping real software.
+              </p>
+            </div>
+          </ScrollReveal>
 
           <div className={styles.grid}>
             {CATS.map((cat, i) => {
               const Icon = cat.icon;
-              const delay = `d${Math.min(i + 2, 7)}`;
               return (
-                <div key={cat.title} className={`${styles.card} anim-child ${delay}`}>
-                  <div className={styles.head}>
-                    <span
-                      className={styles.iconWrap}
-                      style={{ background: cat.bg, color: cat.color }}
-                    >
-                      <Icon size={20} />
-                    </span>
-                    <h3 className={styles.title}>{cat.title}</h3>
+                <ScrollReveal key={cat.title} delay={0.1 * i} width="100%">
+                  <div className={styles.card}>
+                    <div className={styles.head}>
+                      <span
+                        className={styles.iconWrap}
+                        style={{ color: cat.color }}
+                      >
+                        <Icon size={20} />
+                      </span>
+                      <h3 className={styles.title}>{cat.title}</h3>
+                    </div>
+                    <ul className={styles.list}>
+                      {cat.skills.map((s) => (
+                        <li key={s} className={styles.item}>
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className={styles.list}>
-                    {cat.skills.map((s) => (
-                      <li key={s} className={styles.item}>
-                        <span className={styles.dot} style={{ background: cat.color }} />
-                        {s}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                </ScrollReveal>
               );
             })}
           </div>

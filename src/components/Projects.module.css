@@ -1,31 +1,23 @@
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
 
 .card {
   position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--bdr);
-  border-radius: var(--r);
-  padding: 30px 26px 24px;
+  background: #fff;
+  border: 1px solid var(--bdr-light);
+  padding: 40px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  overflow: hidden;
-  transition: 
-    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-    border-color 0.4s ease, 
-    box-shadow 0.4s ease;
+  gap: 20px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  border-color: var(--bdr-a);
-  box-shadow: 
-    0 20px 40px -15px rgba(0, 0, 0, 0.5),
-    0 0 20px rgba(99, 102, 241, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.05);
 }
 
 /* Gradient strip at top of card */
@@ -34,31 +26,31 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 3px;
+  height: 2px;
 }
 
 .cardHead { margin-top: 4px; }
 
 .cat {
+  font-family: var(--font-mono);
   font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 500;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 100px;
+  letter-spacing: 0.05em;
+  color: var(--accent);
 }
 
 .title {
-  font-size: 1.05rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--t1);
-  line-height: 1.4;
+  color: var(--t-main);
+  line-height: 1.2;
 }
 
 .desc {
-  font-size: 0.858rem;
-  color: var(--t2);
-  line-height: 1.78;
+  font-size: 0.95rem;
+  color: var(--t-muted);
+  line-height: 1.6;
   flex: 1;
 }
 
@@ -69,13 +61,13 @@
 }
 
 .chip {
-  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
   font-weight: 500;
-  padding: 3px 10px;
-  border-radius: 100px;
-  background: rgba(99, 102, 241, 0.1);
-  border: 1px solid rgba(99, 102, 241, 0.2);
-  color: #a5b4fc;
+  padding: 4px 10px;
+  background: var(--bg-light);
+  border: 1px solid var(--bdr-light);
+  color: var(--t-ghost);
 }
 
 .viewBtn {

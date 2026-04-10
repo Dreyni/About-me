@@ -11,8 +11,8 @@ const TRAIL_LENGTH = 28;
 const MAX_AGE = 28;
 const GLOW_RADIUS = 18;
 const COLORS = {
-  inner: 'rgba(129, 140, 248,',
-  outer: 'rgba(139, 92, 246,',
+  inner: 'rgba(59, 130, 246,',
+  outer: 'rgba(255, 255, 255,',
 };
 
 export default function MouseTrail() {
@@ -25,25 +25,36 @@ export default function MouseTrail() {
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
+    const host = canvas.parentElement;
+    if (!host) return;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
     };
     resize();
-    window.addEventListener('resize', resize);
+    const ro = new ResizeObserver(resize);
+    ro.observe(host);
 
     const onMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+        return;
+      }
+
       const last = pointsRef.current[pointsRef.current.length - 1];
       if (last) {
-        const dx = e.clientX - last.x;
-        const dy = e.clientY - last.y;
+        const dx = x - last.x;
+        const dy = y - last.y;
         if (dx * dx + dy * dy < 9) return;
       }
 
       pointsRef.current.push({
-        x: e.clientX,
-        y: e.clientY,
+        x,
+        y,
         age: 0,
         maxAge: MAX_AGE,
       });
@@ -53,7 +64,13 @@ export default function MouseTrail() {
       }
     };
 
-    window.addEventListener('mousemove', onMove);
+    const onLeave = () => {
+      pointsRef.current = [];
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    };
+
+    host.addEventListener('mousemove', onMove);
+    host.addEventListener('mouseleave', onLeave);
 
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -89,22 +106,23 @@ export default function MouseTrail() {
 
     return () => {
       cancelAnimationFrame(rafRef.current);
-      window.removeEventListener('mousemove', onMove);
-      window.removeEventListener('resize', resize);
+      host.removeEventListener('mousemove', onMove);
+      host.removeEventListener('mouseleave', onLeave);
+      ro.disconnect();
     };
   }, []);
 
-  return (
+    return (
     <canvas
       ref={canvasRef}
       aria-hidden
       style={{
-        position: 'fixed',
+        position: 'absolute',
         inset: 0,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         pointerEvents: 'none',
-        zIndex: 9999,
+        zIndex: 2,
         mixBlendMode: 'screen',
       }}
     />

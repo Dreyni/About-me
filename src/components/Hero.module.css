@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: #080c16;
+  background: var(--bg-hero);
 }
 
 .canvas {
@@ -21,8 +21,7 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 80% 65% at 50% -5%, rgba(99, 102, 241, 0.22) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 40% at 80% 105%, rgba(139, 92, 246, 0.16) 0%, transparent 60%);
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
 }
 
 .gridOverlay {
@@ -38,29 +37,13 @@
 .content {
   position: relative;
   z-index: 10;
-  max-width: 720px;
+  max-width: 900px;
   margin: 0 auto;
-  padding: 120px 24px 100px;
+  padding: 120px 24px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
 
-/* ─── Staggered fade-in ─── */
-.fadein {
-  opacity: 0;
-  transform: translateY(22px);
-  transition:
-    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.fadein.visible {
-  opacity: 1;
-  transform: none;
-}
+/* Redundant fade classes removed */
 
 /* ─── Badge ─── */
 .badge {
@@ -103,12 +86,12 @@
 
 /* ─── Name ─── */
 .name {
-  font-size: clamp(2.8rem, 8vw, 5rem);
-  font-weight: 900;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: #f1f5f9;
-  margin-top: 4px;
+  font-size: clamp(3.5rem, 10vw, 8.5rem);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: var(--t-hero);
+  margin-bottom: 30px;
 }
 
 .nameGrad {
@@ -130,14 +113,12 @@
 
 /* ─── Typing ─── */
 .typing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  min-height: 34px;
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #94a3b8;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 40px;
 }
 
 .cursor {
@@ -163,10 +144,11 @@
 
 /* ─── Description ─── */
 .desc {
-  font-size: 0.975rem;
-  color: #64748b;
-  max-width: 490px;
-  line-height: 1.8;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #999;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* ─── Buttons ─── */
@@ -178,40 +160,34 @@
 }
 
 .btnPrimary {
-  padding: 12px 28px;
-  border-radius: 10px;
+  padding: 16px 36px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #fff;
+  color: #000;
   border: none;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: #fff;
   cursor: pointer;
-  font-family: inherit;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
 
 .btnPrimary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(99, 102, 241, 0.4);
+  filter: brightness(0.9);
 }
 
 .btnSecondary {
-  padding: 12px 28px;
-  border-radius: 10px;
+  padding: 16px 36px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #94a3b8;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  font-family: inherit;
-  transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .btnSecondary:hover {
-  color: #f1f5f9;
-  border-color: rgba(99, 102, 241, 0.45);
-  background: rgba(99, 102, 241, 0.08);
+  border-color: #fff;
   transform: translateY(-2px);
 }
 

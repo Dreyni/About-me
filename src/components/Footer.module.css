@@ -1,23 +1,26 @@
 .footer {
-  background: var(--bg-alt);
-  border-top: 1px solid var(--bdr);
-  padding: 28px 24px;
+  background: var(--bg-light);
+  border-top: 1px solid var(--bdr-light);
+  padding: 60px 24px;
   text-align: center;
 }
 
 .copy {
-  font-size: 0.82rem;
-  color: var(--t3);
-  margin-bottom: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--t-ghost);
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
 }
 
 .built {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  font-size: 0.78rem;
-  color: var(--t3);
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--t-muted);
 }
 
 .heart {

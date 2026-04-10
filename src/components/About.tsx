@@ -1,10 +1,11 @@
 import { useRef, useState, MouseEvent } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { GraduationCap, MapPin, Code2 } from 'lucide-react';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import { ScrollReveal } from './ScrollReveal';
 import styles from './About.module.css';
 
 const About = () => {
-  const [ref] = useScrollAnimation<HTMLDivElement>();
+  const sectionRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState('');
 
@@ -14,7 +15,7 @@ const About = () => {
     const x = e.clientX - r.left - r.width / 2;
     const y = e.clientY - r.top - r.height / 2;
     setTilt(
-      `perspective(600px) rotateX(${(y / r.height) * -28}deg) rotateY(${(x / r.width) * 28}deg) scale(1.06)`
+      `perspective(600px) rotateX(${(y / r.height) * -8}deg) rotateY(${(x / r.width) * 8}deg) scale(1.02)`
     );
   };
   const onLeave = () => setTilt('');
@@ -41,73 +42,73 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="section">
+    <section ref={sectionRef} className={styles.section}>
       <div className="wrap">
-        <div ref={ref} className="scroll-animate">
-          {/* Section header */}
-          <div className="sh anim-child d1">
-            <h2 className="sh-title">
-              About <span className="sh-accent">Me</span>
-            </h2>
-            <div className="sh-line" />
-          </div>
-
-          <div className={`${styles.card} anim-child d2`}>
-            {/* Profile image */}
-            <div
-              ref={imgRef}
-              className={styles.profileWrap}
-              onMouseMove={onMove}
-              onMouseLeave={onLeave}
-            >
-              <div className={styles.profileGlow} />
-              <img
-                src="/profile.jpg"
-                alt="Andrei Capoon"
-                className={styles.profileImg}
-                style={{ transform: tilt }}
-              />
-            </div>
-
-            {/* Stat cards */}
-            <div className={styles.stats}>
-              {stats.map(({ icon: Icon, label, value, sub }) => (
-                <div key={label} className={styles.stat}>
-                  <Icon size={22} className={styles.statIcon} />
-                  <div>
-                    <p className={styles.statLabel}>{label}</p>
-                    <p className={styles.statValue}>{value}</p>
-                    <p className={styles.statSub}>{sub}</p>
+        <div className={styles.container}>
+          <div className={styles.contentGrid}>
+            <div className={styles.profileColumn}>
+              <ScrollReveal delay={0.1}>
+                <div
+                  ref={imgRef}
+                  className={styles.profileWrap}
+                  onMouseMove={onMove}
+                  onMouseLeave={onLeave}
+                >
+                  <img
+                    src="/profile.jpg"
+                    alt="Andrei Capoon"
+                    className={styles.profileImg}
+                    style={{ transform: tilt }}
+                  />
+                  <div className={styles.nameOverlay}>
+                    <h2 className={styles.overlayName}>Andrei <span className="serif-italic">Capoon</span></h2>
                   </div>
                 </div>
-              ))}
+              </ScrollReveal>
             </div>
 
-            {/* Bio */}
-            <div className={styles.bio}>
-              <p>
-                I&apos;m a third-year{' '}
-                <strong>Bachelor of Science in Information Technology</strong> student majoring
-                in Business Analytics at Batangas State University. My core focus is{' '}
-                <strong>full-stack software engineering</strong> — building functional,
-                complete systems from the ground up.
-              </p>
-              <p>
-                I develop web and mobile applications using{' '}
-                <strong>PHP, JavaScript, MySQL,</strong> and <strong>React Native</strong>. I&apos;m
-                drawn to backend architecture, REST API design, and end-to-end application
-                development that solves real-world problems.
-              </p>
-              <p>
-                I integrate <strong>AI-assisted development tools</strong> — including GitHub
-                Copilot, OpenAI Codex, and MCP integrations — into my workflow to write
-                cleaner, faster, and smarter code.
-              </p>
-              <p>
-                Currently preparing for <strong>internship opportunities</strong> where I can
-                contribute to real engineering teams, work on production-grade systems, and
-                continue growing as a software developer.
-              </p>
+            <div className={styles.infoColumn}>
+              <div className={styles.bentoHeader}>
+                <ScrollReveal>
+                  <h3 className={styles.subhead}>About <span className="serif-italic">Me</span></h3>
+                </ScrollReveal>
+              </div>
+
+              <div className={styles.statsBento}>
+                {stats.map(({ icon: Icon, label, value, sub }, i) => (
+                  <ScrollReveal key={label} delay={0.2 + i * 0.1}>
+                    <div className={styles.statBox}>
+                      <div className={styles.boxHeader}>
+                        <Icon size={20} className={styles.statIcon} />
+                        <span className={styles.statLabel}>{label}</span>
+                      </div>
+                      <p className={styles.statValue}>{value}</p>
+                      <p className={styles.statSub}>{sub}</p>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
+
+              <ScrollReveal delay={0.5}>
+                <div className={styles.bioText}>
+                  <p>
+                    I&apos;m a third-year{' '}
+                    <strong>Bachelor of Science in Information Technology</strong> student majoring
+                    in Business Analytics at Batangas State University. My core focus is{' '}
+                    <strong>full-stack software engineering</strong> — building functional,
+                    complete systems from the ground up.
+                  </p>
+                  <p>
+                    I develop web and mobile applications using{' '}
+                    <strong>PHP, JavaScript, MySQL,</strong> and <strong>React Native</strong>. I&apos;m
+                    drawn to backend architecture and REST API design.
+                  </p>
+                  <p>
+                    I integrate <strong>AI-assisted development tools</strong> into my workflow to write
+                    cleaner, faster, and smarter code. Currently seeking internship opportunities.
+                  </p>
+                </div>
+              </ScrollReveal>
             </div>
           </div>
         </div>

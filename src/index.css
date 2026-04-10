@@ -11,34 +11,56 @@
   padding: 0;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
 :root {
   /* Backgrounds */
-  --bg:        #080c16;
-  --bg-alt:    #0c1222;
-  --bg-card:   #101828;
-  --bg-card-h: #141e30;
+  --bg-hero:    #000000;
+  --bg-light:   #f7f7f7;
+  --bg-card:    #ffffff;
+  
+  /* Text */
+  --t-hero:     #ffffff;
+  --t-main:     #121212;
+  --t-muted:    #666666;
+  --t-ghost:    #999999;
+
+  /* Accents */
+  --accent:     #3b82f6;
+  --accent-soft: rgba(59, 130, 246, 0.1);
 
   /* Borders */
-  --bdr:   rgba(255, 255, 255, 0.07);
-  --bdr-a: rgba(99, 102, 241, 0.35);
+  --bdr-dark:   rgba(255, 255, 255, 0.1);
+  --bdr-light:  rgba(0, 0, 0, 0.07);
 
-  /* Text */
-  --t1: #f1f5f9;
-  --t2: #94a3b8;
-  --t3: #64748b;
-
-  /* Accent */
-  --a:  #6366f1;
-  --a1: #818cf8;
-  --a2: #a78bfa;
-  --a3: #c084fc;
+  /* Fonts */
+  --font-sans:  'Inter', -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', serif;
+  --font-mono:  'JetBrains Mono', monospace;
 
   /* Misc */
-  --r:    12px;
-  --r-sm:  8px;
-  --tr:   0.22s ease;
-  --max-w: 1100px;
-  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --tr:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --max-w:      1200px;
 }
 
 html {
@@ -47,14 +69,19 @@ html {
 }
 
 body {
-  font-family: var(--font);
-  background: var(--bg);
-  color: var(--t1);
-  line-height: 1.65;
+  font-family: var(--font-sans);
+  background: var(--bg-hero);
+  color: var(--t-hero);
+  line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
+}
+
+.serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
 /* ─── Background texture ─── */
@@ -62,36 +89,66 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
-  opacity: 0.025;
+  z-index: -2; /* Was 1000 — move behind everything */
+  opacity: 0.04;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Viewport Glow */
+.vignette {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 30%, rgba(59, 130, 246, 0.03) 100%);
+  z-index: -1; /* Was 999 — move behind content */
 }
 
 /* ─── Scrollbar ─── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-alt); }
-::-webkit-scrollbar-thumb { background: var(--a); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--a1); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-hero); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
 
 /* ─── Layout utilities ─── */
-.section     { padding: 100px 24px; }
-.section-alt { background: var(--bg-alt); }
+.section {
+  padding: 140px 24px;
+  position: relative;
+  width: 100%;
+}
+
+.section-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.section-light {
+  background: var(--bg-light);
+  color: var(--t-main);
+  z-index: 10;
+}
 
 .wrap {
   max-width: var(--max-w);
   margin: 0 auto;
+  width: 100%;
 }
 
 /* ─── Section header ─── */
 .sh { text-align: center; margin-bottom: 60px; }
 
 .sh-title {
-  font-size: clamp(1.85rem, 4vw, 2.5rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--t1);
-  margin-bottom: 14px;
+  letter-spacing: -0.04em;
+  margin-bottom: 20px;
+  line-height: 1.1;
 }
 
 .sh-accent {

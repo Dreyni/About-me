@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import MouseTrail from './MouseTrail';
+import { ScrollReveal } from './ScrollReveal';
 import styles from './Hero.module.css';
 
 /* ─── Typing animation ─── */
@@ -113,61 +116,41 @@ function ParticleCanvas() {
 
 /* ─── Hero component ─── */
 const Hero = () => {
-  const [stage, setStage] = useState(0);
   const typed = useTypingAnimation(TYPING_STRINGS);
-
-  useEffect(() => {
-    const ts = [100, 300, 500, 700].map((d, i) =>
-      setTimeout(() => setStage(i + 1), d)
-    );
-    return () => ts.forEach(clearTimeout);
-  }, []);
 
   const goTo = (id: string) =>
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 
-  const fade = (n: number) =>
-    `${styles.fadein}${stage >= n ? ' ' + styles.visible : ''}`;
-
   return (
-    <section id="home" className={styles.hero}>
+    <section id="home" className={`${styles.hero} section-sticky`}>
+      <MouseTrail />
       <ParticleCanvas />
       <div className={styles.gradients} aria-hidden />
       <div className={styles.gridOverlay} aria-hidden />
 
       <div className={styles.content}>
-        {/* Badge + Name */}
-        <div className={fade(1)}>
-          <div className={styles.badge}>
-            <span className={styles.dot} />
-            Open to opportunities
-          </div>
+        <ScrollReveal>
           <h1 className={styles.name}>
-            Andrei <span className={styles.nameGrad}>Capoon</span>
+            Andrei <span className="serif-italic">Capoon</span>
           </h1>
-        </div>
+        </ScrollReveal>
 
-        {/* Divider */}
-        <div className={`${styles.divider} ${fade(2)}`} />
-
-        {/* Typing subtitle */}
-        <div className={fade(2)}>
+        <ScrollReveal delay={0.2}>
           <div className={styles.typing}>
             <span>{typed}</span>
             <span className={styles.cursor} aria-hidden />
           </div>
-        </div>
+        </ScrollReveal>
 
-        {/* Description */}
-        <div className={fade(3)}>
+        <ScrollReveal delay={0.4}>
           <p className={styles.desc}>
-            Building real-world web and mobile applications with clean code, practical
-            system design, and modern development tools.
+            Crafting digital experiences with <span className="serif-italic">precision</span> and <span className="serif-italic">purpose</span>. 
+            Software Engineer specializing in scalable systems and refined user interfaces.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* CTAs + Socials */}
-        <div className={fade(4)}>
+        <ScrollReveal delay={0.6}>
           <div className={styles.actions}>
             <button className={styles.btnPrimary} onClick={() => goTo('projects')}>
               View Projects
@@ -199,16 +182,19 @@ const Hero = () => {
               </a>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
-      <button
+      <motion.button
         className={styles.scrollBtn}
         onClick={() => goTo('about')}
         aria-label="Scroll down"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
       >
         <ChevronDown size={30} />
-      </button>
+      </motion.button>
     </section>
   );
 };
