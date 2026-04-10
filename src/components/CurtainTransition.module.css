@@ -1,7 +1,7 @@
 .container {
   position: relative;
-  /* Total scroll distance for the transition */
-  height: 200vh; 
+  /* Set to exactly 100vh to eliminate "dead" scroll delay */
+  height: 100vh; 
   background: transparent;
   z-index: 10;
 }
