@@ -9,13 +9,18 @@
   border: 1px solid var(--bdr);
   border-radius: var(--r);
   padding: 22px;
-  transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+    border-color 0.4s ease, 
+    box-shadow 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: var(--bdr-a);
-  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.12);
+  box-shadow: 
+    0 15px 30px -10px rgba(0, 0, 0, 0.4),
+    0 0 15px rgba(99, 102, 241, 0.1);
 }
 
 .head {

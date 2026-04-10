@@ -34,7 +34,9 @@ const Navigation = () => {
       <nav className={`${styles.nav}${scrolled ? ' ' + styles.scrolled : ''}`}>
         <div className={styles.inner}>
           <button className={styles.logo} onClick={() => goTo('home')}>
-            AC.
+            <span className={styles.logoBracket}>&lt;</span>
+            AC
+            <span className={styles.logoBracket}> /&gt;</span>
           </button>
           <ul className={styles.links} role="list">
             {NAV_LINKS.map(({ label, id }) => (
