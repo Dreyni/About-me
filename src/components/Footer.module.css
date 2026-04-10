@@ -1,0 +1,26 @@
+.footer {
+  background: var(--bg-alt);
+  border-top: 1px solid var(--bdr);
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.copy {
+  font-size: 0.82rem;
+  color: var(--t3);
+  margin-bottom: 6px;
+}
+
+.built {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--t3);
+}
+
+.heart {
+  color: #f87171;
+  fill: #f87171;
+}

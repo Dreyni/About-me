@@ -1,0 +1,112 @@
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: 20px;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* ─── Profile image ─── */
+.profileWrap {
+  position: relative;
+  cursor: default;
+  width: fit-content;
+}
+
+.profileGlow {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a78bfa);
+  filter: blur(16px);
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.profileWrap:hover .profileGlow { opacity: 0.9; }
+
+.profileImg {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--bg-alt);
+  display: block;
+  transition: transform 0.2s ease-out;
+}
+
+/* ─── Stat cards ─── */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+.stat {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 16px;
+  background: var(--bg-alt);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r);
+  transition: border-color var(--tr);
+}
+
+.stat:hover { border-color: var(--bdr-a); }
+
+.statIcon { color: var(--a1); flex-shrink: 0; margin-top: 1px; }
+
+.statLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--t3);
+  margin-bottom: 4px;
+}
+
+.statValue {
+  font-size: 0.858rem;
+  font-weight: 600;
+  color: var(--t1);
+  margin-bottom: 2px;
+}
+
+.statSub {
+  font-size: 0.76rem;
+  color: var(--t3);
+}
+
+/* ─── Bio ─── */
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  color: var(--t2);
+  font-size: 0.938rem;
+  line-height: 1.85;
+  max-width: 740px;
+  text-align: left;
+  width: 100%;
+}
+
+.bio strong {
+  color: var(--t1);
+  font-weight: 600;
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 768px) {
+  .card { padding: 32px 20px; gap: 28px; }
+  .stats { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .card { padding: 24px 16px; }
+}

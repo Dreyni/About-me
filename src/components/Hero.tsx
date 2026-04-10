@@ -1,0 +1,216 @@
+import { useEffect, useRef, useState } from 'react';
+import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import styles from './Hero.module.css';
+
+/* ─── Typing animation ─── */
+const TYPING_STRINGS = [
+  'Full-Stack Developer',
+  'Software Engineer',
+  'Backend Systems Builder',
+  'Mobile App Developer',
+];
+
+function useTypingAnimation(strings: string[], speed = 80, pause = 1800): string {
+  const [displayed, setDisplayed] = useState('');
+  const [strIndex, setStrIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = strings[strIndex];
+    if (!deleting && charIndex === current.length) {
+      const t = setTimeout(() => setDeleting(true), pause);
+      return () => clearTimeout(t);
+    }
+    if (deleting && charIndex === 0) {
+      setDeleting(false);
+      setStrIndex((i) => (i + 1) % strings.length);
+      return;
+    }
+    const t = setTimeout(
+      () => {
+        setCharIndex((i) => i + (deleting ? -1 : 1));
+        setDisplayed(current.slice(0, charIndex + (deleting ? -1 : 1)));
+      },
+      deleting ? speed / 2 : speed
+    );
+    return () => clearTimeout(t);
+  }, [charIndex, deleting, strIndex, strings, speed, pause]);
+
+  return displayed;
+}
+
+/* ─── Particle canvas ─── */
+interface Particle {
+  id: number; x: number; y: number;
+  size: number; speedX: number; speedY: number;
+  opacity: number; color: string;
+}
+
+function genParticles(): Particle[] {
+  const colors = ['#6366f1', '#8b5cf6', '#a78bfa', '#818cf8', '#c4b5fd'];
+  return Array.from({ length: 55 }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2.5 + 0.5,
+    speedX: (Math.random() - 0.5) * 0.06,
+    speedY: (Math.random() - 0.5) * 0.06,
+    opacity: Math.random() * 0.5 + 0.15,
+    color: colors[Math.floor(Math.random() * colors.length)],
+  }));
+}
+
+function ParticleCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>(genParticles());
+  const rafRef = useRef<number>(0);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    const ro = new ResizeObserver(resize);
+    ro.observe(canvas);
+
+    const draw = () => {
+      const { width, height } = canvas;
+      ctx.clearRect(0, 0, width, height);
+      particlesRef.current = particlesRef.current.map((p) => {
+        let nx = p.x + p.speedX,
+          ny = p.y + p.speedY;
+        if (nx < 0 || nx > 100) { p.speedX *= -1; nx = Math.max(0, Math.min(100, nx)); }
+        if (ny < 0 || ny > 100) { p.speedY *= -1; ny = Math.max(0, Math.min(100, ny)); }
+        return { ...p, x: nx, y: ny };
+      });
+      for (const p of particlesRef.current) {
+        ctx.beginPath();
+        ctx.arc((p.x / 100) * width, (p.y / 100) * height, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      rafRef.current = requestAnimationFrame(draw);
+    };
+
+    rafRef.current = requestAnimationFrame(draw);
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      ro.disconnect();
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className={styles.canvas} aria-hidden />;
+}
+
+/* ─── Hero component ─── */
+const Hero = () => {
+  const [stage, setStage] = useState(0);
+  const typed = useTypingAnimation(TYPING_STRINGS);
+
+  useEffect(() => {
+    const ts = [100, 300, 500, 700].map((d, i) =>
+      setTimeout(() => setStage(i + 1), d)
+    );
+    return () => ts.forEach(clearTimeout);
+  }, []);
+
+  const goTo = (id: string) =>
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+
+  const fade = (n: number) =>
+    `${styles.fadein}${stage >= n ? ' ' + styles.visible : ''}`;
+
+  return (
+    <section id="home" className={styles.hero}>
+      <ParticleCanvas />
+      <div className={styles.gradients} aria-hidden />
+      <div className={styles.gridOverlay} aria-hidden />
+
+      <div className={styles.content}>
+        {/* Badge + Name */}
+        <div className={fade(1)}>
+          <div className={styles.badge}>
+            <span className={styles.dot} />
+            Open to opportunities
+          </div>
+          <h1 className={styles.name}>
+            Andrei <span className={styles.nameGrad}>Capoon</span>
+          </h1>
+        </div>
+
+        {/* Divider */}
+        <div className={`${styles.divider} ${fade(2)}`} />
+
+        {/* Typing subtitle */}
+        <div className={fade(2)}>
+          <div className={styles.typing}>
+            <span>{typed}</span>
+            <span className={styles.cursor} aria-hidden />
+          </div>
+        </div>
+
+        {/* Description */}
+        <div className={fade(3)}>
+          <p className={styles.desc}>
+            Building real-world web and mobile applications with clean code, practical
+            system design, and modern development tools.
+          </p>
+        </div>
+
+        {/* CTAs + Socials */}
+        <div className={fade(4)}>
+          <div className={styles.actions}>
+            <button className={styles.btnPrimary} onClick={() => goTo('projects')}>
+              View Projects
+            </button>
+            <button className={styles.btnSecondary} onClick={() => goTo('contact')}>
+              Contact Me
+            </button>
+          </div>
+
+          <div className={styles.socials}>
+            {([
+              { href: 'https://github.com/Dreyni', label: 'GitHub', Icon: Github },
+              {
+                href: 'https://www.linkedin.com/in/andrei-capoon-7961a33a7/',
+                label: 'LinkedIn',
+                Icon: Linkedin,
+              },
+              { href: 'mailto:delosreyesdrei25@gmail.com', label: 'Email', Icon: Mail },
+            ] as const).map(({ href, label, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                target={href.startsWith('http') ? '_blank' : undefined}
+                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={styles.socialLink}
+              >
+                <Icon size={19} />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <button
+        className={styles.scrollBtn}
+        onClick={() => goTo('about')}
+        aria-label="Scroll down"
+      >
+        <ChevronDown size={30} />
+      </button>
+    </section>
+  );
+};
+
+export default Hero;

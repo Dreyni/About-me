@@ -1,0 +1,98 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--bdr);
+  border-radius: var(--r);
+  padding: 30px 26px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--bdr-a);
+  box-shadow: 0 14px 40px rgba(99, 102, 241, 0.13);
+}
+
+/* Gradient strip at top of card */
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.cardHead { margin-top: 4px; }
+
+.cat {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+.title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--t1);
+  line-height: 1.4;
+}
+
+.desc {
+  font-size: 0.858rem;
+  color: var(--t2);
+  line-height: 1.78;
+  flex: 1;
+}
+
+.tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+.viewBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--t3);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.viewBtn:hover { color: var(--a1); }
+.viewBtn svg { transition: transform 0.2s ease; }
+.viewBtn:hover svg { transform: translateX(3px); }
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+}
