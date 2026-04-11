@@ -1,40 +1,40 @@
 .section {
   position: relative;
-  padding: 160px 0;
   background: #f5f5f7;
   color: #121212;
-}
-
-.container {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  padding: 0 24px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .contentGrid {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 80px;
-  align-items: start;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 85vh;
 }
 
 /* ─── Profile Image & Overlay ─── */
 .profileColumn {
-  position: sticky;
-  top: 120px;
+  width: 45%;
+  flex-shrink: 0;
+  position: relative;
 }
 
 .profileWrap {
-  position: relative;
-  border-radius: 4px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
   overflow: hidden;
-  box-shadow: 0 30px 60px -20px rgba(0,0,0,0.15);
+  border-radius: 0;
+  box-shadow: 20px 0 60px -10px rgba(0,0,0,0.15);
 }
 
 .profileImg {
   width: 100%;
-  aspect-ratio: 4/5;
+  height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   display: block;
   filter: contrast(1.05) brightness(1.02);
 }
@@ -44,14 +44,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 40px 30px;
-  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  padding: 60px 40px;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
   pointer-events: none;
 }
 
 .overlayName {
   color: #fff;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -59,40 +59,72 @@
 
 /* ─── Info & Bento ─── */
 .infoColumn {
+  width: 55%;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 48px;
+  padding: 120px 4vw 120px 6vw;
+  box-sizing: border-box;
 }
 
+.swiperWrap {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
 
-.statsBento {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+.swiper {
+  width: 100%;
+  padding: 24px 0;
+}
+
+.swiperSlide {
+  width: 340px; /* Fixed card width */
 }
 
 .statBox {
-  padding: 32px;
+  padding: 36px;
   background: #fff;
   border: 1px solid rgba(0,0,0,0.05);
   border-radius: 4px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.statBox:first-child {
-  grid-column: span 2;
+  height: 100%;
+  transition: box-shadow 0.3s ease;
 }
 
 .statBox:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+}
+
+/* ─── Embedded Wheel Connectors ─── */
+.trackConnector {
+  position: absolute;
+  right: -110px; /* Bridge the 130% gap identically per slide */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.sketchArrow {
+  stroke: #111;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+  transition: all 0.2s ease;
 }
 
 .boxHeader {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .statIcon {
@@ -101,14 +133,14 @@
 
 .statLabel {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #999;
 }
 
 .statValue {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: #121212;
   margin-bottom: 8px;
@@ -116,19 +148,19 @@
 }
 
 .statSub {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #666;
   line-height: 1.5;
 }
 
 .bioText {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   line-height: 1.8;
-  color: #333;
+  color: #444;
 }
 
 .bioText p {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 
 .bioText strong {
@@ -138,33 +170,35 @@
 /* ─── Mobile ─── */
 @media (max-width: 1024px) {
   .contentGrid {
-    grid-template-columns: 1fr;
-    gap: 60px;
+    flex-direction: column;
+    min-height: auto;
   }
   
-  .profileColumn {
-    position: static;
+  .profileColumn, .infoColumn {
+    width: 100%;
   }
 
-  .statsBento {
-    grid-template-columns: 1fr;
+  .profileWrap {
+    height: 70vh;
+    border-radius: 0;
+    position: relative;
   }
 
-  .statBox:first-child {
-    grid-column: span 1;
+  .swiperSlide {
+    width: 280px;
   }
 }
 
 @media (max-width: 640px) {
-  .section {
-    padding: 100px 0;
-  }
-  
   .overlayName {
-    font-size: 2rem;
+    font-size: 2.5rem;
+  }
+
+  .infoColumn {
+    padding: 80px 24px;
   }
 
   .bioText {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }

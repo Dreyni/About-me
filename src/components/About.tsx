@@ -2,6 +2,13 @@ import { useRef, useState, MouseEvent } from 'react';
 
 import { GraduationCap, MapPin, Code2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { EffectCreative, Navigation } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+import 'swiper/css/navigation';
+
 import styles from './About.module.css';
 
 const About = () => {
@@ -43,10 +50,8 @@ const About = () => {
 
   return (
     <section ref={sectionRef} className={styles.section}>
-      <div className="wrap">
-        <div className={styles.container}>
-          <div className={styles.contentGrid}>
-            <div className={styles.profileColumn}>
+      <div className={styles.contentGrid}>
+        <div className={styles.profileColumn}>
               <ScrollReveal delay={0.1}>
                 <div
                   ref={imgRef}
@@ -74,20 +79,55 @@ const About = () => {
                 </div>
               </ScrollReveal>
 
-              <div className={styles.statsBento}>
-                {stats.map(({ icon: Icon, label, value, sub }, i) => (
-                  <ScrollReveal key={label} delay={0.2 + i * 0.1}>
-                    <div className={styles.statBox}>
-                      <div className={styles.boxHeader}>
-                        <Icon size={20} className={styles.statIcon} />
-                        <span className={styles.statLabel}>{label}</span>
-                      </div>
-                      <p className={styles.statValue}>{value}</p>
-                      <p className={styles.statSub}>{sub}</p>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
+              <ScrollReveal delay={0.2} width="100%">
+                <div className={styles.swiperWrap}>
+                  
+                  <Swiper
+                    loop={true}
+                    initialSlide={6}
+                    effect={'creative'}
+                    grabCursor={true}
+                    centeredSlides={true}
+                    slidesPerView={'auto'}
+                    creativeEffect={{
+                      limitProgress: 3,
+                      prev: {
+                        translate: ['-130%', 0, -600],
+                        rotate: [0, -65, 0],
+                        opacity: 1,
+                      },
+                      next: {
+                        translate: ['130%', 0, -600],
+                        rotate: [0, 65, 0],
+                        opacity: 1,
+                      },
+                    }}
+                    modules={[EffectCreative]}
+                    className={styles.swiper}
+                  >
+                    {[...stats, ...stats, ...stats, ...stats, ...stats, ...stats].map(({ icon: Icon, label, value, sub }, i) => (
+                      <SwiperSlide key={`${label}-${i}`} className={styles.swiperSlide}>
+                        {/* Static Stat Box */}
+                        <div className={styles.statBox}>
+                          <div className={styles.boxHeader}>
+                            <Icon size={20} className={styles.statIcon} />
+                            <span className={styles.statLabel}>{label}</span>
+                          </div>
+                          <p className={styles.statValue}>{value}</p>
+                          <p className={styles.statSub}>{sub}</p>
+                        </div>
+
+                        {/* Embedded 3D Connector Arrow matching the wheel's rotation */}
+                        <div className={styles.trackConnector}>
+                          <svg width="80" height="80" viewBox="0 0 100 100" className={styles.sketchArrow}>
+                            <path d="M 25,35 L 10,50 L 25,65 M 10,50 Q 50,30 90,50 M 75,35 L 90,50 L 75,65" fill="none" />
+                          </svg>
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              </ScrollReveal>
 
               <ScrollReveal delay={0.5}>
                 <div className={styles.bioText}>
@@ -110,8 +150,6 @@ const About = () => {
                 </div>
               </ScrollReveal>
             </div>
-          </div>
-        </div>
       </div>
     </section>
   );
