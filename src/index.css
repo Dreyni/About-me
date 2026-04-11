@@ -158,57 +158,12 @@ body::before {
   background-clip: text;
 }
 
-.sh-line {
-  width: 40px;
-  height: 2px;
-  margin: 0 auto 16px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, var(--a), var(--a2));
-}
-
 .sh-sub {
-  color: var(--t2);
+  color: var(--t-muted);
   font-size: 0.938rem;
   max-width: 460px;
   margin: 0 auto;
   line-height: 1.75;
-}
-
-/* ─── Scroll animations ─── */
-.scroll-animate { opacity: 1; transform: none; }
-
-/* Children start hidden when parent is hidden */
-.scroll-animate.animate-hidden .anim-child {
-  opacity: 0;
-  transform: translateY(28px);
-}
-
-/* Children animate in when parent becomes visible */
-.scroll-animate.animate-visible .anim-child {
-  opacity: 1;
-  transform: none;
-  transition:
-    opacity  0.65s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Stagger delays */
-.scroll-animate.animate-visible .d1 { transition-delay: 0.05s; }
-.scroll-animate.animate-visible .d2 { transition-delay: 0.12s; }
-.scroll-animate.animate-visible .d3 { transition-delay: 0.19s; }
-.scroll-animate.animate-visible .d4 { transition-delay: 0.26s; }
-.scroll-animate.animate-visible .d5 { transition-delay: 0.33s; }
-.scroll-animate.animate-visible .d6 { transition-delay: 0.40s; }
-.scroll-animate.animate-visible .d7 { transition-delay: 0.47s; }
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-animate.animate-hidden .anim-child,
-  .scroll-animate.animate-visible .anim-child {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 }
 
 /* ─── Mobile ─── */

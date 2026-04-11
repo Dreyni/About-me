@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { scrollTo } from '../utils/scrollTo';
 import styles from './Navigation.module.css';
 
 const NAV_LINKS = [
@@ -24,11 +25,7 @@ const Navigation = () => {
   const navBorder = useTransform(scrollY, [0, 50], ["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.1)"]);
 
   const goTo = (id: string) => {
-    if (id === 'home') {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollTo(id);
     setOpen(false);
   };
 

@@ -64,13 +64,6 @@
   gap: 48px;
 }
 
-.subhead {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #666;
-  margin-bottom: 24px;
-}
 
 .statsBento {
   display: grid;

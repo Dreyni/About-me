@@ -74,7 +74,7 @@ const Contact = () => {
 
           {/* Contact cards */}
           <div className={styles.cards}>
-            {contacts.map(({ icon: Icon, label, value, href, iconColor, iconBg }, i) => (
+            {contacts.map(({ icon: Icon, label, value, href, iconColor }, i) => (
               <ScrollReveal key={label} delay={0.1 * i} width="100%">
                 <div
                   className={`${styles.card}${href ? ' ' + styles.clickable : ''}`}

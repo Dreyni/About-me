@@ -1,5 +1,5 @@
 import { useRef, useState, MouseEvent } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+
 import { GraduationCap, MapPin, Code2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import styles from './About.module.css';
@@ -68,11 +68,11 @@ const About = () => {
             </div>
 
             <div className={styles.infoColumn}>
-              <div className={styles.bentoHeader}>
-                <ScrollReveal>
-                  <h3 className={styles.subhead}>About <span className="serif-italic">Me</span></h3>
-                </ScrollReveal>
-              </div>
+              <ScrollReveal>
+                <div className="sh" style={{ textAlign: 'left', marginBottom: '24px' }}>
+                  <h2 className="sh-title">About <span className="serif-italic">Me</span></h2>
+                </div>
+              </ScrollReveal>
 
               <div className={styles.statsBento}>
                 {stats.map(({ icon: Icon, label, value, sub }, i) => (
