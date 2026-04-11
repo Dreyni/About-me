@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import MouseTrail from './MouseTrail';
 import { ScrollReveal } from './ScrollReveal';
 import { useTypingAnimation } from '../hooks/useTypingAnimation';
@@ -118,40 +118,7 @@ const Hero = () => {
           </p>
         </ScrollReveal>
 
-        {/* CTAs + Socials */}
-        <ScrollReveal delay={0.6}>
-          <div className={styles.actions}>
-            <button className={styles.btnPrimary} onClick={() => scrollTo('projects')}>
-              View Projects
-            </button>
-            <button className={styles.btnSecondary} onClick={() => scrollTo('contact')}>
-              Contact Me
-            </button>
-          </div>
 
-          <div className={styles.socials}>
-            {([
-              { href: 'https://github.com/Dreyni', label: 'GitHub', Icon: Github },
-              {
-                href: 'https://www.linkedin.com/in/andrei-capoon-7961a33a7/',
-                label: 'LinkedIn',
-                Icon: Linkedin,
-              },
-              { href: 'mailto:delosreyesdrei25@gmail.com', label: 'Email', Icon: Mail },
-            ] as const).map(({ href, label, Icon }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className={styles.socialLink}
-              >
-                <Icon size={19} />
-              </a>
-            ))}
-          </div>
-        </ScrollReveal>
       </div>
 
       <motion.button
