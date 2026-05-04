@@ -1,6 +1,5 @@
 import { ReactLenis } from '@studio-freight/react-lenis';
 import Navigation from './components/Navigation';
-import { CurtainTransition } from './components/CurtainTransition';
 import Hero from './components/Hero';
 import About from './components/About';
 import Projects from './components/Projects';
@@ -17,9 +16,9 @@ function App() {
         <main>
           <Hero />
 
-          <CurtainTransition id="about">
+          <div id="about">
             <About />
-          </CurtainTransition>
+          </div>
 
           <Projects />
           <Skills />

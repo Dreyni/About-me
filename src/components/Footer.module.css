@@ -3,6 +3,18 @@
   border-top: 1px solid var(--bdr-light);
   padding: 60px 24px;
   text-align: center;
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
 }
 
 .copy {

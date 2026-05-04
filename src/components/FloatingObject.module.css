@@ -10,9 +10,7 @@
   justify-content: center;
 }
 
-.wrapper:active {
-  cursor: grabbing;
-}
+.wrapper:active { cursor: grabbing; }
 
 /* ─── 3D Scene ─── */
 .scene {
@@ -28,13 +26,12 @@
   position: absolute;
   width: 120px;
   height: 120px;
-  border: 1.5px solid rgba(129, 140, 248, 0.25);
-  background: rgba(99, 102, 241, 0.03);
+  border: 1.5px solid rgba(14, 165, 233, 0.25);
+  background: rgba(14, 165, 233, 0.03);
   backdrop-filter: blur(2px);
-  box-shadow: inset 0 0 30px rgba(99, 102, 241, 0.05);
+  box-shadow: inset 0 0 30px rgba(14, 165, 233, 0.05);
 }
 
-/* ─── Cube transforms (half = 60px) ─── */
 .front  { transform: translateZ(60px); }
 .back   { transform: translateZ(-60px); }
 .left   { transform: rotateY(-90deg) translateZ(60px); }
@@ -58,7 +55,7 @@
   position: absolute;
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(167, 139, 250, 0.3);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   background: rgba(139, 92, 246, 0.06);
 }
 
@@ -83,15 +80,8 @@
   left: 50%;
   translate: -50% -50%;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(129, 140, 248, 0.8) 0%,
-    rgba(139, 92, 246, 0.4) 40%,
-    transparent 70%
-  );
-  box-shadow:
-    0 0 30px 10px rgba(99, 102, 241, 0.2),
-    0 0 60px 20px rgba(139, 92, 246, 0.1);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.8) 0%, rgba(139, 92, 246, 0.4) 40%, transparent 70%);
+  box-shadow: 0 0 30px 10px rgba(14, 165, 233, 0.2), 0 0 60px 20px rgba(139, 92, 246, 0.1);
   animation: corePulse 3s ease-in-out infinite;
 }
 
@@ -106,7 +96,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 1px solid rgba(99, 102, 241, 0.12);
+  border: 1px solid rgba(14, 165, 233, 0.12);
   top: 50%;
   left: 50%;
   translate: -50% -50%;
@@ -126,8 +116,8 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: rgba(167, 139, 250, 0.6);
-  box-shadow: 0 0 8px 2px rgba(139, 92, 246, 0.3);
+  background: rgba(14, 165, 233, 0.6);
+  box-shadow: 0 0 8px 2px rgba(14, 165, 233, 0.3);
   top: 50%;
   left: 50%;
   pointer-events: none;
@@ -148,12 +138,7 @@
   width: 260px;
   height: 260px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(99, 102, 241, 0.08) 0%,
-    rgba(139, 92, 246, 0.04) 40%,
-    transparent 70%
-  );
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, rgba(139, 92, 246, 0.03) 40%, transparent 70%);
   pointer-events: none;
   animation: ambientPulse 4s ease-in-out infinite;
 }
@@ -171,7 +156,7 @@
   translate: -50% 0;
   font-family: var(--font-mono);
   font-size: 0.65rem;
-  color: rgba(167, 139, 250, 0.45);
+  color: rgba(14, 165, 233, 0.35);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   white-space: nowrap;
@@ -181,11 +166,7 @@
 
 /* ─── Responsive ─── */
 @media (max-width: 1024px) {
-  .wrapper {
-    width: 260px;
-    height: 260px;
-    margin: 30px auto 0;
-  }
+  .wrapper { width: 260px; height: 260px; margin: 30px auto 0; }
   .scene  { width: 100px; height: 100px; }
   .face   { width: 100px; height: 100px; }
   .front  { transform: translateZ(50px); }
@@ -194,7 +175,6 @@
   .right  { transform: rotateY(90deg) translateZ(50px); }
   .top    { transform: rotateX(90deg) translateZ(50px); }
   .bottom { transform: rotateX(-90deg) translateZ(50px); }
-
   .innerCube { width: 40px; height: 40px; }
   .innerFace { width: 40px; height: 40px; }
   .innerFront  { transform: translateZ(20px); }
@@ -203,16 +183,11 @@
   .innerRight  { transform: rotateY(90deg) translateZ(20px); }
   .innerTop    { transform: rotateX(90deg) translateZ(20px); }
   .innerBottom { transform: rotateX(-90deg) translateZ(20px); }
-
   .ring { width: 160px; height: 160px; }
 }
 
 @media (max-width: 640px) {
-  .wrapper {
-    width: 200px;
-    height: 200px;
-    margin: 16px auto 0;
-  }
+  .wrapper { width: 200px; height: 200px; margin: 16px auto 0; }
   .scene  { width: 80px; height: 80px; }
   .face   { width: 80px; height: 80px; }
   .front  { transform: translateZ(40px); }
@@ -221,7 +196,6 @@
   .right  { transform: rotateY(90deg) translateZ(40px); }
   .top    { transform: rotateX(90deg) translateZ(40px); }
   .bottom { transform: rotateX(-90deg) translateZ(40px); }
-
   .innerCube { width: 32px; height: 32px; }
   .innerFace { width: 32px; height: 32px; }
   .innerFront  { transform: translateZ(16px); }
@@ -230,7 +204,6 @@
   .innerRight  { transform: rotateY(90deg) translateZ(16px); }
   .innerTop    { transform: rotateX(90deg) translateZ(16px); }
   .innerBottom { transform: rotateX(-90deg) translateZ(16px); }
-
   .ring { width: 130px; height: 130px; }
   .orbitParticle { display: none; }
   .hint { display: none; }

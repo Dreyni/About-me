@@ -21,7 +21,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    radial-gradient(circle at 30% 40%, rgba(14, 165, 233, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
 }
 
 .gridOverlay {
@@ -29,8 +30,8 @@
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
   background-size: 64px 64px;
 }
 
@@ -55,72 +56,15 @@
   flex-shrink: 0;
 }
 
-/* Redundant fade classes removed */
-
-/* ─── Badge ─── */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  background: rgba(99, 102, 241, 0.08);
-  color: #a5b4fc;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  margin-bottom: 8px;
-  backdrop-filter: blur(8px);
-}
-
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #818cf8;
-  animation: dotPulse 2.2s ease-in-out infinite;
-}
-
-@keyframes dotPulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.5;
-    transform: scale(0.7);
-  }
-}
-
 /* ─── Name ─── */
 .name {
   font-size: clamp(3.5rem, 10vw, 8.5rem);
   font-weight: 800;
   line-height: 0.9;
   letter-spacing: -0.05em;
-  color: var(--t-hero);
+  color: #fff;
   margin-bottom: 30px;
-}
-
-.nameGrad {
-  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 55%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ─── Divider ─── */
-.divider {
-  width: 48px;
-  height: 2px;
-  border-radius: 99px;
-  background: linear-gradient(90deg, #6366f1, #a78bfa);
-  box-shadow: 0 0 14px rgba(139, 92, 246, 0.55);
-  flex-shrink: 0;
+  text-shadow: 0 0 60px rgba(14, 165, 233, 0.15);
 }
 
 /* ─── Typing ─── */
@@ -129,40 +73,34 @@
   font-size: 0.9rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--neon-cyan);
   margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
 }
 
 .cursor {
   display: inline-block;
   width: 2px;
   height: 20px;
-  background: #818cf8;
+  background: var(--neon-cyan);
   border-radius: 1px;
   animation: blink 1s step-end infinite;
+  box-shadow: 0 0 8px var(--neon-cyan);
 }
 
 @keyframes blink {
-
-  from,
-  to {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 /* ─── Description ─── */
 .desc {
   font-size: clamp(1rem, 2vw, 1.25rem);
-  color: #999;
+  color: #94a3b8;
   max-width: 520px;
   margin: 0;
   line-height: 1.6;
 }
-
 
 /* ─── Scroll button ─── */
 .scrollBtn {
@@ -172,26 +110,21 @@
   transform: translateX(-50%);
   background: none;
   border: none;
-  color: #475569;
+  color: var(--neon-cyan);
   cursor: pointer;
   animation: bounce 2.2s ease-in-out infinite;
   transition: color 0.2s ease;
+  filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
 }
 
 .scrollBtn:hover {
-  color: #818cf8;
+  color: var(--neon-purple);
+  filter: drop-shadow(0 0 12px rgba(139, 92, 246, 0.5));
 }
 
 @keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-
-  50% {
-    transform: translateX(-50%) translateY(10px);
-  }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(10px); }
 }
 
 /* ─── Tablet ─── */
@@ -202,28 +135,16 @@
     padding: 100px 24px;
     justify-content: center;
   }
-
   .content {
     text-align: center;
     max-width: 700px;
   }
-
-  .desc {
-    margin: 0 auto;
-  }
+  .desc { margin: 0 auto; }
 }
 
 /* ─── Mobile ─── */
 @media (max-width: 640px) {
-  .splitLayout {
-    padding: 80px 20px 60px;
-  }
-
-  .name {
-    font-size: clamp(2.2rem, 10vw, 3rem);
-  }
-
-  .typing {
-    font-size: 1rem;
-  }
+  .splitLayout { padding: 80px 20px 60px; }
+  .name { font-size: clamp(2.2rem, 10vw, 3rem); }
+  .typing { font-size: 1rem; }
 }

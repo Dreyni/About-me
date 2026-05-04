@@ -35,7 +35,7 @@ const Navigation = () => {
         className={styles.nav}
         style={{
           backgroundColor: navBg,
-          badropFilter: navBlur,
+          backdropFilter: navBlur,
           borderBottom: "1px solid",
           borderColor: navBorder
         }}

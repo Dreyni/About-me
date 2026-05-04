@@ -1,26 +1,28 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 24px;
 }
 
 .card {
   position: relative;
-  background: #fff;
-  border: 1px solid var(--bdr-light);
+  background: var(--bg-card);
+  border: 1px solid rgba(14, 165, 233, 0.1);
   padding: 40px;
   display: flex;
   flex-direction: column;
   gap: 20px;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  clip-path: var(--clip-card);
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.05);
+  border-color: rgba(14, 165, 233, 0.2);
+  box-shadow: 0 12px 40px rgba(14, 165, 233, 0.08), 0 4px 20px rgba(0, 0, 0, 0.06);
+  transform: translateY(-4px);
 }
 
-/* Gradient strip at top of card */
 .bar {
   position: absolute;
   top: 0;
@@ -36,8 +38,9 @@
   font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  clip-path: var(--clip-card-sm);
 }
 
 .title {
@@ -65,9 +68,16 @@
   font-size: 0.65rem;
   font-weight: 500;
   padding: 4px 10px;
-  background: var(--bg-light);
-  border: 1px solid var(--bdr-light);
-  color: var(--t-ghost);
+  background: rgba(14, 165, 233, 0.06);
+  border: 1px solid rgba(14, 165, 233, 0.12);
+  color: var(--t-muted);
+  clip-path: var(--clip-card-sm);
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+  color: var(--neon-cyan);
 }
 
 .viewBtn {
@@ -78,16 +88,18 @@
   padding-top: 12px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: var(--t2);
+  color: var(--neon-cyan);
   background: none;
   border: none;
   cursor: pointer;
-  font-family: inherit;
-  transition: color 0.2s ease;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
   width: fit-content;
 }
 
-.viewBtn:hover { color: var(--a); }
+.viewBtn:hover { color: var(--neon-purple); }
 .viewBtn svg { transition: transform 0.22s ease; }
 .viewBtn:hover svg { transform: translateX(4px); }
 

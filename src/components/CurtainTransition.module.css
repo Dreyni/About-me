@@ -1,7 +1,6 @@
 .container {
   position: relative;
-  /* Set to exactly 100vh to eliminate "dead" scroll delay */
-  height: 100vh; 
+  height: 100vh;
   background: transparent;
   z-index: 10;
 }
@@ -25,7 +24,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  background: #f5f5f7; /* Matching light gray from design */
+  background: var(--bg-light, #f0f2f5);
   will-change: transform;
 }
 
@@ -38,5 +37,5 @@
 /* Ensure children section fills the revealed area perfectly */
 .content > :global(section) {
   min-height: 100vh;
-  background: transparent !important; /* Let the panels show through or be the base */
+  background: transparent !important;
 }

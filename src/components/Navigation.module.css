@@ -7,6 +7,7 @@
   z-index: 1000;
   display: flex;
   align-items: center;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.06);
 }
 
 .inner {
@@ -22,21 +23,18 @@
 .logo {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--neon-cyan);
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  transition: opacity 0.2s ease;
+  transition: all 0.3s ease;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
 }
 
 .logo:hover {
-  opacity: 0.7;
-}
-
-.logoBracket {
-  color: #818cf8;
-  opacity: 0.8;
+  text-shadow: 0 0 30px rgba(0, 240, 255, 0.6);
+  filter: brightness(1.2);
 }
 
 .links {
@@ -47,16 +45,18 @@
 }
 
 .link {
+  position: relative;
   font-family: var(--font-mono);
   font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #999;
+  letter-spacing: 0.08em;
+  color: var(--t-muted);
   background: none;
   border: none;
   cursor: pointer;
-  transition: color 0.2s ease;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  padding: 4px 0;
 }
 
 .link::after {
@@ -66,13 +66,18 @@
   left: 0;
   right: 0;
   height: 1.5px;
-  background: #818cf8;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s ease;
+  box-shadow: 0 0 8px var(--neon-cyan);
 }
 
-.link:hover { color: #f1f5f9; }
+.link:hover {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
 .link:hover::after { transform: scaleX(1); }
 
 .hamburger {
@@ -81,7 +86,7 @@
   justify-content: center;
   background: none;
   border: none;
-  color: #94a3b8;
+  color: var(--neon-cyan);
   cursor: pointer;
   padding: 4px;
 }
@@ -90,10 +95,10 @@
   position: fixed;
   inset: 64px 0 auto 0;
   z-index: 99;
-  background: rgba(8, 12, 22, 0.97);
+  background: rgba(10, 10, 15, 0.97);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.1);
   padding: 12px 16px 20px;
   display: flex;
   flex-direction: column;
@@ -104,19 +109,19 @@
   font-family: inherit;
   font-size: 0.95rem;
   font-weight: 500;
-  color: #94a3b8;
+  color: var(--t-muted);
   background: none;
   border: none;
   cursor: pointer;
   text-align: left;
   padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 4px;
   transition: color 0.18s ease, background 0.18s ease;
 }
 
 .mobileLink:hover {
-  color: #f1f5f9;
-  background: rgba(99, 102, 241, 0.1);
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.06);
 }
 
 @media (max-width: 768px) {

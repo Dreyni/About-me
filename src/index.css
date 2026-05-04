@@ -1,6 +1,6 @@
 /*
  * Andrei Capoon — Portfolio Global Styles
- * Plain CSS · Dark mode · Software Engineer focus
+ * Light Video Game HUD Theme — neon accents on clean backgrounds
  */
 
 *,
@@ -35,23 +35,29 @@ html.lenis, html.lenis body {
 
 :root {
   /* Backgrounds */
-  --bg-hero:    #000000;
-  --bg-light:   #f7f7f7;
+  --bg-hero:    #0a0a0f;
+  --bg-light:   #f0f2f5;
   --bg-card:    #ffffff;
-  
+
   /* Text */
   --t-hero:     #ffffff;
   --t-main:     #121212;
-  --t-muted:    #666666;
-  --t-ghost:    #999999;
+  --t-muted:    #64748b;
+  --t-ghost:    #94a3b8;
 
-  /* Accents */
-  --accent:     #3b82f6;
-  --accent-soft: rgba(59, 130, 246, 0.1);
+  /* Neon Accents */
+  --neon-cyan:    #0ea5e9;
+  --neon-magenta: #e11d9e;
+  --neon-purple:  #8b5cf6;
+  --neon-blue:    #6366f1;
+  --neon-green:   #10b981;
+  --accent:       #0ea5e9;
+  --accent-soft:  rgba(14, 165, 233, 0.08);
 
   /* Borders */
   --bdr-dark:   rgba(255, 255, 255, 0.1);
-  --bdr-light:  rgba(0, 0, 0, 0.07);
+  --bdr-light:  rgba(0, 0, 0, 0.06);
+  --bdr-accent: rgba(14, 165, 233, 0.2);
 
   /* Fonts */
   --font-sans:  'Inter', -apple-system, sans-serif;
@@ -61,6 +67,10 @@ html.lenis, html.lenis body {
   /* Misc */
   --tr:         0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --max-w:      1200px;
+
+  /* Clip path for game-card corners */
+  --clip-card: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
+  --clip-card-sm: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
 }
 
 html {
@@ -84,32 +94,37 @@ body {
   font-weight: 400;
 }
 
-/* ─── Background texture ─── */
+/* ─── Noise texture ─── */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2; /* Was 1000 — move behind everything */
-  opacity: 0.04;
+  z-index: -2;
+  opacity: 0.03;
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   mix-blend-mode: overlay;
 }
 
-/* Viewport Glow */
+/* Viewport Glow (hero only) */
 .vignette {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(circle at center, transparent 30%, rgba(59, 130, 246, 0.03) 100%);
-  z-index: -1; /* Was 999 — move behind content */
+  background: radial-gradient(circle at center, transparent 30%, rgba(14, 165, 233, 0.03) 100%);
+  z-index: -1;
 }
 
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg-hero); }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.25); }
+::-webkit-scrollbar-track { background: var(--bg-light); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-purple));
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+}
 
 /* ─── Layout utilities ─── */
 .section {
@@ -149,10 +164,11 @@ body::before {
   letter-spacing: -0.04em;
   margin-bottom: 20px;
   line-height: 1.1;
+  color: var(--t-main);
 }
 
 .sh-accent {
-  background: linear-gradient(135deg, #818cf8, #a78bfa);
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

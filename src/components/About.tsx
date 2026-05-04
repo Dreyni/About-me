@@ -3,7 +3,7 @@ import { useRef, useState, MouseEvent } from 'react';
 import { GraduationCap, MapPin, Code2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCreative, Navigation } from 'swiper/modules';
+import { EffectCreative } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/effect-creative';
