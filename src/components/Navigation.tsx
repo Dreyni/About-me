@@ -5,11 +5,11 @@ import { scrollTo } from '../utils/scrollTo';
 import styles from './Navigation.module.css';
 
 const NAV_LINKS = [
-  { label: 'Home',     id: 'home'     },
-  { label: 'About',    id: 'about'    },
+  { label: 'Home', id: 'home' },
+  { label: 'About', id: 'about' },
   { label: 'Projects', id: 'projects' },
-  { label: 'Skills',   id: 'skills'   },
-  { label: 'Contact',  id: 'contact'  },
+  { label: 'Skills', id: 'skills' },
+  { label: 'Contact', id: 'contact' },
 ];
 
 const Navigation = () => {
@@ -31,11 +31,11 @@ const Navigation = () => {
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         className={styles.nav}
-        style={{ 
+        style={{
           backgroundColor: navBg,
-          backdropFilter: navBlur,
+          badropFilter: navBlur,
           borderBottom: "1px solid",
           borderColor: navBorder
         }}
@@ -66,8 +66,8 @@ const Navigation = () => {
 
       <AnimatePresence>
         {open && (
-          <motion.div 
-            className={styles.mobile} 
+          <motion.div
+            className={styles.mobile}
             role="menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}

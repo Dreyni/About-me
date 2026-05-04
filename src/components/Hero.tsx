@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import MouseTrail from './MouseTrail';
+import FloatingObject from './FloatingObject';
 import { ScrollReveal } from './ScrollReveal';
 import { useTypingAnimation } from '../hooks/useTypingAnimation';
 import { scrollTo } from '../utils/scrollTo';
@@ -97,28 +98,32 @@ const Hero = () => {
       <div className={styles.gradients} aria-hidden />
       <div className={styles.gridOverlay} aria-hidden />
 
-      <div className={styles.content}>
-        <ScrollReveal>
-          <h1 className={styles.name}>
-            Andrei <span className="serif-italic">Capoon</span>
-          </h1>
+      <div className={styles.splitLayout}>
+        <div className={styles.content}>
+          <ScrollReveal>
+            <h1 className={styles.name}>
+              Andrei <span className="serif-italic">Capoon</span>
+            </h1>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.2}>
+            <div className={styles.typing}>
+              <span>{typed}</span>
+              <span className={styles.cursor} aria-hidden />
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <p className={styles.desc}>
+              Crafting digital experiences with <span className="serif-italic">precision</span> and <span className="serif-italic">purpose</span>. 
+              Software Engineer specializing in scalable systems and refined user interfaces.
+            </p>
+          </ScrollReveal>
+        </div>
+
+        <ScrollReveal delay={0.5}>
+          <FloatingObject />
         </ScrollReveal>
-
-        <ScrollReveal delay={0.2}>
-          <div className={styles.typing}>
-            <span>{typed}</span>
-            <span className={styles.cursor} aria-hidden />
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.4}>
-          <p className={styles.desc}>
-            Crafting digital experiences with <span className="serif-italic">precision</span> and <span className="serif-italic">purpose</span>. 
-            Software Engineer specializing in scalable systems and refined user interfaces.
-          </p>
-        </ScrollReveal>
-
-
       </div>
 
       <motion.button

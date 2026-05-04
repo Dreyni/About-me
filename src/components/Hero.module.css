@@ -34,13 +34,25 @@
   background-size: 64px 64px;
 }
 
-.content {
+/* ─── Split layout ─── */
+.splitLayout {
   position: relative;
   z-index: 10;
-  max-width: 900px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 120px 24px;
-  text-align: center;
+  padding: 120px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.content {
+  position: relative;
+  max-width: 640px;
+  text-align: left;
+  flex-shrink: 0;
 }
 
 /* Redundant fade classes removed */
@@ -146,8 +158,8 @@
 .desc {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #999;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 520px;
+  margin: 0;
   line-height: 1.6;
 }
 
@@ -182,17 +194,36 @@
   }
 }
 
+/* ─── Tablet ─── */
+@media (max-width: 1024px) {
+  .splitLayout {
+    flex-direction: column;
+    text-align: center;
+    padding: 100px 24px;
+    justify-content: center;
+  }
+
+  .content {
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .desc {
+    margin: 0 auto;
+  }
+}
+
 /* ─── Mobile ─── */
 @media (max-width: 640px) {
+  .splitLayout {
+    padding: 80px 20px 60px;
+  }
+
   .name {
     font-size: clamp(2.2rem, 10vw, 3rem);
   }
 
   .typing {
     font-size: 1rem;
-  }
-
-  .content {
-    padding: 100px 20px 80px;
   }
 }
